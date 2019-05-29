@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import MediaCard from './MediaCard';
 
 function App() {
 const [data, setPosts] = useState([]);
@@ -14,16 +14,7 @@ useEffect(()=> {
 
   
   return (
-    <div className="App">
-      <ul>
-        {data.map(item => (
-          <li key={`${item.category}${item.id}`} >
-            {item.title}
-          </li>
-        ))}
-      </ul>
-       
-    </div>
+   <MediaCard postData = {data} />
   );
 }
 
