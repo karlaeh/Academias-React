@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import MediaCard from './MediaCard';
+import Container from '@material-ui/core/Container';
 
 function App() {
 const [data, setPosts] = useState([]);
@@ -14,7 +15,9 @@ useEffect(()=> {
 
   
   return (
-   <MediaCard postData = {data} />
+    <Container>
+      <MediaCard postData = {data} />
+    </Container>
   );
 }
 

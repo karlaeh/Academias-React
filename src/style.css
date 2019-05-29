@@ -1,0 +1,19 @@
+
+
+.img-container {
+    height: 350px;  
+  }
+ 
+.card-container{
+    height: 350px;  
+}
+  .text-container {
+
+    color: white;
+    text-shadow: 2px 2px rgb(43, 40, 40);
+    font-size: 20px;
+  }
+
+  .title-style{
+    font-size: 40px;
+  }

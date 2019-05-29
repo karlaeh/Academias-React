@@ -3,44 +3,38 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-    card: {
-      maxWidth: 500,
-    },
-    media: {
-      height: 500,
-    },
-  });
+import Grid from '@material-ui/core/Grid';
+import './style.css'
 
 
 export default function MediaCard(props){      
-  const classes = useStyles();
+
+  const cardContentStyle = {
+    position: 'relative',
+    top: '-225px',
+  };
+
   return (
-    <div className="allPosts">
-      <ul>
-        {props.postData.map(item => (
-          <Card className={classes.card} key={`${item.category}${item.id}`} >
-            <CardMedia 
-              className = {classes.media}
-              image= {item.image}
-              title={item.title}
-            /> 
-            <CardContent>
-            <Typography gutterBottom variant="h3" component="h2">
-                {item.title}
-            </Typography>
-            <Typography component="h4">
-                {item.shortDescription}
-            </Typography>
-            <Typography component="p">
-                {item.description}
-            </Typography>
-            </CardContent>
-          </Card>
-        ))}
-        </ul>       
-    </div>
+      <Grid container>
+          {props.postData.map(item => (
+            <Grid item xs={12} sm={6} >
+              <Card className='card-container' key={`${item.category}${item.id}`} >
+                <CardMedia
+                  className='img-container'
+                  image= {item.image}
+                  title={item.title}
+                /> 
+                <CardContent style={cardContentStyle} className='text-container' >
+                  <Typography className='title-style' variant="h3" >
+                    {item.title}
+                  </Typography>
+                  <Typography variant="p">
+                    {item.shortDescription}
+                  </Typography>
+                </CardContent>
+              </Card>  
+            </Grid>
+          ))} 
+      </Grid>    
   );
 }
