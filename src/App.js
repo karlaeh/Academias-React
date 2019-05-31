@@ -20,7 +20,7 @@ useEffect(()=> {
     <Container>
       <Header />
       <MediaCard postData = {data} />
-      <AddPost />
+      <AddPost getSrc = {data.map(item => (item.image))} />
     </Container>
   );
 }
