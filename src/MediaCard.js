@@ -11,13 +11,13 @@ export default function MediaCard(props){
 
   const cardContentStyle = {
     position: 'relative',
-    top: '-225px',
+    top: '-270px',
   };
 
   return (
       <Grid container>
           {props.postData.map(item => (
-            <Grid item xs={12} sm={6} >
+            <Grid item xs={12} md={6} >
               <Card className='card-container' key={`${item.category}${item.id}`} >
                 <CardMedia
                   className='img-container'
@@ -28,8 +28,14 @@ export default function MediaCard(props){
                   <Typography className='title-style' variant="h3" >
                     {item.title}
                   </Typography>
-                  <Typography variant="p">
+                  <Typography className='comments-style'>
+                    {item.comments.length} Comments
+                  </Typography>
+                  <Typography className='descrip-style' >
                     {item.shortDescription}
+                  </Typography>
+                  <Typography className='categ-style'>
+                    {item.category}
                   </Typography>
                 </CardContent>
               </Card>  
