@@ -8,6 +8,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import MenuItem from '@material-ui/core/MenuItem';
+import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@material-ui/core/Button';
 import './style.css'
 
 
@@ -18,9 +20,6 @@ const useStyles = makeStyles(theme => ({
     right: '20px',
     backgroundColor: 'coral',
     color: 'white',
-  },
-  textField: {
-    width: '100%',
   },
   menu: {
     width: '100%',
@@ -57,16 +56,18 @@ const categ = [
 
 
 function AddPost(props) {
-  const imageurl = props.getSrc[1]
 
   const [open, setOpen] = React.useState(false);
-  const [values, setValues] = React.useState({
-    category: '',
-    source: imageurl
-  });
   
+  const [values, setValues] = React.useState({});
+
   const handleChange = name => event => {
+    event.persist();
     setValues({ ...values, [name]: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    if (event) event.preventDefault();
   };
 
   function handleClickOpen() {
@@ -78,10 +79,9 @@ function AddPost(props) {
   }
   
   const classes = useStyles();
-  
+ 
   return (
     <div>
-      { console.log(imageurl)}
       <Tooltip title="Add Post" aria-label="Add Post">
         <Fab className={classes.absolute} onClick={handleClickOpen}>
           <CreateIcon />
@@ -94,6 +94,8 @@ function AddPost(props) {
             autoFocus
             margin="dense"
             id="entry-title"
+            value={values.title}
+            onChange={handleChange('title')}
             label="Title"
             type="text"
             fullWidth
@@ -102,7 +104,9 @@ function AddPost(props) {
           <TextField
             autoFocus
             margin="dense"
-            id="entry-sdescrip"
+            id="entry-shdescrip"
+            value={values.shortdes}
+            onChange={handleChange('shortdes')}
             label="Short Description"
             type="text"
             fullWidth
@@ -112,39 +116,55 @@ function AddPost(props) {
             autoFocus
             margin="dense"
             id="entry-descrip"
+            value={values.descrip}
+            onChange={handleChange('descrip')}
             label="Description"
             type="text"
             fullWidth
             required
           />
           <TextField
-          select
-          label="Category"
-          className={classes.textField}
-          value={values.category}
-          margin="normal"
-          onChange={handleChange('category')}
-          SelectProps={{
-            MenuProps: {
-              className: classes.menu,
-            },
-          }}
+            id="entry-cat"
+            select
+            label="Category"
+            fullWidth
+            value={values.category}
+            margin="normal"
+            required
+            onChange={handleChange('category')}
+            SelectProps={{
+              MenuProps: {
+                className: classes.menu,
+              },
+            }}
           >
-          {categ.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-        ))}
-        </TextField>
-        <TextField
-        label="Image URL"
-        className={classes.textField}
-        value={values.source}
-        onChange={handleChange('source')}
-        margin="normal"
-        />
+            {categ.map(option => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+          ))}
+          </TextField>
+          <TextField
+            id="entry-img"
+            label="Image URL"
+            onChange={handleChange('source')}
+            fullWidth
+            defaultValue={props.getSrc[2]}
+            value={values.source}
+            margin="normal"
+            required
+          />
         </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleSubmit} color="primary">
+            Save
+          </Button>
+        </DialogActions>
       </Dialog>
+      {console.log(values)}
     </div>
   );
 }
