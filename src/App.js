@@ -4,6 +4,7 @@ import MediaCard from './MediaCard';
 import Container from '@material-ui/core/Container';
 import Header from './Header';
 import AddPost from './AddPost';
+import FilterPosts from './FilterPosts';
 
 function App() {
 const [data, setPosts] = useState([]);
@@ -15,12 +16,17 @@ useEffect(()=> {
     .then( res => setPosts(res.data));
 }, []);
 
-  
+function addNewPost ( newPost ) {
+  setPosts([...data, newPost]);
+}
+
+
   return (
     <Container>
       <Header />
+      <FilterPosts />
       <MediaCard postData = {data} />
-      <AddPost getSrc = {data.map(item => (item.image))} />
+      <AddPost handleNewPost = {addNewPost} />
     </Container>
   );
 }

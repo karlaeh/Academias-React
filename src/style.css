@@ -2,7 +2,7 @@
   font-family: sans-serif;
   text-align: center;
   padding-top: 45px;
-  padding-bottom: 45px;
+  padding-bottom: 30px;
 }
 
 .bracket {
@@ -36,7 +36,6 @@
 .text-container {
   color: white;
   text-shadow: 2px 2px rgb(43, 40, 40);
-  /* font-size: 20px; */
 }
 
 .title-style {
@@ -67,4 +66,11 @@
 
 .add-post-title {
   text-align: center;
+}
+
+.filter-style {
+  height: 100%;
+  padding: 1px;
+  margin-bottom: 15px;
+  justify-content: center;
 }

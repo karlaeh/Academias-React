@@ -59,15 +59,22 @@ function AddPost(props) {
 
   const [open, setOpen] = React.useState(false);
   
-  const [values, setValues] = React.useState({});
+  const emptyPost = {
+    category: '',
+    image: 'https://source.unsplash.com/random?',
+    comments: []
+};
+  
+  const [values, setValues] = React.useState(emptyPost);
 
   const handleChange = name => event => {
-    event.persist();
     setValues({ ...values, [name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
-    if (event) event.preventDefault();
+    props.handleNewPost (values);
+    setOpen(false);
+    setValues(emptyPost)
   };
 
   function handleClickOpen() {
@@ -76,6 +83,7 @@ function AddPost(props) {
 
   function handleClose() {
     setOpen(false);
+    setValues(emptyPost)
   }
   
   const classes = useStyles();
@@ -93,7 +101,7 @@ function AddPost(props) {
           <TextField
             autoFocus
             margin="dense"
-            id="entry-title"
+            // id="title"
             value={values.title}
             onChange={handleChange('title')}
             label="Title"
@@ -104,9 +112,9 @@ function AddPost(props) {
           <TextField
             autoFocus
             margin="dense"
-            id="entry-shdescrip"
-            value={values.shortdes}
-            onChange={handleChange('shortdes')}
+            // id="shortDescription"
+            value={values.shortDescription}
+            onChange={handleChange('shortDescription')}
             label="Short Description"
             type="text"
             fullWidth
@@ -115,22 +123,21 @@ function AddPost(props) {
           <TextField
             autoFocus
             margin="dense"
-            id="entry-descrip"
-            value={values.descrip}
-            onChange={handleChange('descrip')}
+            // id="description"
+            value={values.description}
+            onChange={handleChange('description')}
             label="Description"
             type="text"
             fullWidth
             required
           />
           <TextField
-            id="entry-cat"
+            // id="category"
             select
             label="Category"
             fullWidth
             value={values.category}
             margin="normal"
-            required
             onChange={handleChange('category')}
             SelectProps={{
               MenuProps: {
@@ -145,12 +152,12 @@ function AddPost(props) {
           ))}
           </TextField>
           <TextField
-            id="entry-img"
+            // id="image"
             label="Image URL"
-            onChange={handleChange('source')}
+            onChange={handleChange('image')}
             fullWidth
-            defaultValue={props.getSrc[2]}
-            value={values.source}
+            type='url'
+            value={values.image}
             margin="normal"
             required
           />
@@ -164,7 +171,6 @@ function AddPost(props) {
           </Button>
         </DialogActions>
       </Dialog>
-      {console.log(values)}
     </div>
   );
 }
