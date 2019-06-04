@@ -5,11 +5,13 @@ import './style.css'
 
 
 export default function FilterPosts ( props ) {
-
+  const handleChange = (event, newFilter) => {
+    props.handleFilter(newFilter);
+  };
   
   return (
     <div align='center'>
-      <ToggleButtonGroup className='filter-style'>
+      <ToggleButtonGroup className='filter-style' onChange={handleChange}>
         <ToggleButton value="all" >
            All
         </ToggleButton>,

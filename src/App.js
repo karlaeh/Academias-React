@@ -20,11 +20,16 @@ function addNewPost ( newPost ) {
   setPosts([...data, newPost]);
 }
 
+/* function addNewFilter ( filter ) {
+  const filteredPosts = data.filter( post => {
+    post.category === filter ;                                    
+    });
+} */
 
   return (
     <Container>
       <Header />
-      <FilterPosts />
+      <FilterPosts /> 
       <MediaCard postData = {data} />
       <AddPost handleNewPost = {addNewPost} />
     </Container>

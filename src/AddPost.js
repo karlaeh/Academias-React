@@ -61,16 +61,16 @@ function AddPost(props) {
   
   const emptyPost = {
     category: '',
-    image: 'https://source.unsplash.com/random?',
+    image: 'https://source.unsplash.com/random?sig=',
     comments: []
 };
-  
+ 
   const [values, setValues] = React.useState(emptyPost);
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
   };
-
+  
   const handleSubmit = (event) => {
     props.handleNewPost (values);
     setOpen(false);
