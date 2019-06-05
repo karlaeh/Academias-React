@@ -8,6 +8,7 @@ import FilterPosts from './FilterPosts';
 
 function App() {
 const [data, setPosts] = useState([]);
+const [filterPost, setFilterPost] = useState('all');
 
 // Make a request 
 useEffect(()=> {
@@ -16,23 +17,25 @@ useEffect(()=> {
     .then( res => setPosts(res.data));
 }, []);
 
+
 function addNewPost ( newPost ) {
   setPosts([...data, newPost]);
 }
 
-function setFilter ( filter ) {
-  if (filter !== 'all') {
-    const newArr = data.filter (item => {
-      return item.category === filter
-    })
-    console.log(newArr)
-  } 
-}
+function setFilter ( filter ) { 
+  setFilterPost( filter )
+} 
+
   return (
     <Container>
       <Header />
-      <FilterPosts handleFilter = {setFilter}/> 
-      <MediaCard postData = {data} />
+      <FilterPosts handleFilter = {setFilter}   /> 
+      <MediaCard postData = {data.filter(item => {
+        if (filterPost === 'all'){
+          return true 
+        } else {return item.category === filterPost}}
+         )}  
+         />
       <AddPost handleNewPost = {addNewPost} />
     </Container>
   );

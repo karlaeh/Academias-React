@@ -29,40 +29,41 @@ const useStyles = makeStyles(theme => ({
 const categ = [
   {
     label: 'All',
-    value: 'All',
+    value: 'all',
   },
   {
     label: 'Travel',
-    value: 'Travel',
+    value: 'travel',
   },
   {
     label: 'Lifestyle',
-    value: 'Lifestyle',
+    value: 'lifestyle',
   },
   {
     label: 'Business',
-    value: 'Business',
+    value: 'business',
   },
   {
     label: 'Food',
-    value: 'Food',
+    value: 'food',
   },
   {
     label: 'Work',
-    value: 'Work',
+    value: 'work',
   },
 ];
 
 
 
 function AddPost(props) {
-
+  const [count,setCount] =  React.useState(5);
   const [open, setOpen] = React.useState(false);
   
   const emptyPost = {
     category: '',
     image: 'https://source.unsplash.com/random?sig=',
-    comments: []
+    comments: [],
+    id: count,
 };
  
   const [values, setValues] = React.useState(emptyPost);
@@ -74,11 +75,12 @@ function AddPost(props) {
   const handleSubmit = (event) => {
     props.handleNewPost (values);
     setOpen(false);
-    setValues(emptyPost)
+    setValues(emptyPost);
   };
 
   function handleClickOpen() {
     setOpen(true);
+    setCount(count + 1)
   }
 
   function handleClose() {

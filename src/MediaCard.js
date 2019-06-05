@@ -17,7 +17,7 @@ export default function MediaCard(props){
   return (
       <Grid container>
           {props.postData.map((item) => (
-            <Grid item xs={12} md={6} >
+            <Grid key={item.id} item xs={12} md={6} >
               <Card className='card-container' >
                 <CardMedia
                   className='img-container'
