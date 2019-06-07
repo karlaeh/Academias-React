@@ -22,10 +22,10 @@ export default function MediaCard(props){
   return (
       <Grid container>
           {props.postData.map((item) => (
+            <Grid key={item.id} item xs={12} md={6} >
             <Link to={{
               pathname: `/post/${item.id}`,
-            }}>
-            <Grid key={item.id} item xs={12} md={6} >
+            }} style={{ textDecoration: 'none' }}>
               <Card className='card-container'  onClick={() => { openPost(item) }} >
                 <CardMedia
                   className='img-container'
@@ -47,8 +47,8 @@ export default function MediaCard(props){
                   </Typography>
                 </CardContent>
               </Card>  
-            </Grid>
             </Link>
+              </Grid>
           ))} 
       </Grid>    
   );

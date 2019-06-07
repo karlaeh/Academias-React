@@ -11,7 +11,7 @@ import FullPost from './FullPost';
 function App() {
 const [data, setPosts] = useState([]);
 const [filterPost, setFilterPost] = useState('all');
-const [openId, setFullPost] = useState();
+const [openPost, setFullPost] = useState();
 
 // Make a request 
 useEffect(()=> {
@@ -30,9 +30,8 @@ function setFilter ( filter ) {
 };
 
 
-function setOpen ( openId ) { 
-  setFullPost( openId )
-  //data.filter(item => {return item.id === openId})
+function setOpen ( openPost ) { 
+  setFullPost( openPost )
 };
 
   
@@ -50,7 +49,7 @@ function setOpen ( openId ) {
           <AddPost handleNewPost = {addNewPost} />
           </Container>
         } />  
-      <Route path='/post/:id' render={ () => <FullPost postOpen = { openId } /> 
+      <Route path='/post/:id' render={ () => <FullPost postOpen = { openPost } /> 
       } />
     </Router>
 

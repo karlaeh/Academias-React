@@ -103,7 +103,6 @@ function AddPost(props) {
           <TextField
             autoFocus
             margin="dense"
-            // id="title"
             value={values.title}
             onChange={handleChange('title')}
             label="Title"
@@ -114,7 +113,6 @@ function AddPost(props) {
           <TextField
             autoFocus
             margin="dense"
-            // id="shortDescription"
             value={values.shortDescription}
             onChange={handleChange('shortDescription')}
             label="Short Description"
@@ -125,7 +123,6 @@ function AddPost(props) {
           <TextField
             autoFocus
             margin="dense"
-            // id="description"
             value={values.description}
             onChange={handleChange('description')}
             label="Description"
@@ -134,7 +131,6 @@ function AddPost(props) {
             required
           />
           <TextField
-            // id="category"
             select
             label="Category"
             fullWidth
@@ -154,7 +150,6 @@ function AddPost(props) {
           ))}
           </TextField>
           <TextField
-            // id="image"
             label="Image URL"
             onChange={handleChange('image')}
             fullWidth
